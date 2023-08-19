@@ -57,3 +57,12 @@ button:hover {
 .total-price {
     text-align: center;
 }
+.submit-order {
+    padding: 10px 20px; /* Optional: Add some padding to make the button larger */
+    font-size: 16px;   /* Optional: Increase the font size for better visibility */
+    cursor: pointer;   /* Change the cursor to a hand when hovering over the button */
+}
+.submit-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
