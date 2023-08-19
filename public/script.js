@@ -184,10 +184,26 @@ function addToOrder(item, quantityElement) {
 
     orderItems.push(orderItem);
 
-    // Update the UI as you did before
+    // Update the UI
     const orderElement = document.getElementById('order');
     const orderItemElement = document.createElement('p');
     orderItemElement.textContent = `${item.name} x ${quantity} = $${orderItem.totalPrice.toFixed(2)}`;
+
+    // Add the "Remove" button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', () => {
+        // Remove the item from the UI
+        orderElement.removeChild(orderItemElement);
+        
+        // Remove the item from the global orderItems array
+        const index = orderItems.indexOf(orderItem);
+        if (index > -1) {
+            orderItems.splice(index, 1);
+        }
+    });
+    orderItemElement.appendChild(removeButton);
+
     orderElement.appendChild(orderItemElement);
 }
 
