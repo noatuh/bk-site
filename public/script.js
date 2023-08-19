@@ -167,3 +167,49 @@ const totalPriceElement = document.createElement('p');
 totalPriceElement.id = 'total-price';
 totalPriceElement.classList.add('total-price'); // Add a class to the total price element
 document.body.appendChild(totalPriceElement);
+
+// Global order array
+let orderItems = [];
+
+// Modified addToOrder function
+function addToOrder(item, quantityElement) {
+    const quantity = Number(quantityElement.value);
+    if (quantity <= 0) return;
+
+    const orderItem = {
+        name: item.name,
+        quantity: quantity,
+        totalPrice: item.price * quantity
+    };
+
+    orderItems.push(orderItem);
+
+    // Update the UI as you did before
+    const orderElement = document.getElementById('order');
+    const orderItemElement = document.createElement('p');
+    orderItemElement.textContent = `${item.name} x ${quantity} = $${orderItem.totalPrice.toFixed(2)}`;
+    orderElement.appendChild(orderItemElement);
+}
+
+// New function to send the entire order to the server
+function submitOrder() {
+    fetch('/submit-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderItems)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        orderItems = []; // Clear the order items
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Add an event listener to the "Submit Order" button
+const submitButton = document.getElementById('submit-order');
+submitButton.addEventListener('click', submitOrder);
