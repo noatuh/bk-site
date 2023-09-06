@@ -6,10 +6,19 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Order View</title>
 <link rel="stylesheet" type="text/css" href="order.css">
-
+<style>
+    .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;  /* Spacing between buttons */
+}
+</style>
 <body>
 <h1>Recent Orders</h1>
-<button onclick="fetchOrders()">Fetch Orders</button><button onclick="printOrdersAsText()">Print Orders as Text</button>
+<div class="button-container">
+<button onclick="fetchOrders()">Fetch Orders</button> <br> <br><button onclick="printOrdersAsText()">Print Orders as Text</button>
+</div >
 <div id="orders"></div>
 <script>
         let fetchedOrders = [];  // This will store the fetched orders
