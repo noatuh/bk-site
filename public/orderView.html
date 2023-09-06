@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order View</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order View</title>
+<style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -17,11 +18,10 @@
     </style>
 </head>
 <body>
-    <h1>Recent Orders</h1>
-    <button onclick="fetchOrders()">Fetch Orders</button>
-    <div id="orders"></div>
-
-    <script>
+<h1>Recent Orders</h1>
+<button onclick="fetchOrders()">Fetch Orders</button><button onclick="printOrdersAsText()">Print Orders as Text</button>
+<div id="orders"></div>
+<script>
         let fetchedOrders = [];  // This will store the fetched orders
 
 function fetchOrders() {
@@ -55,5 +55,17 @@ window.onload = fetchOrders;
 document.getElementById('refreshButton').addEventListener('click', fetchOrders);
 
     </script>
-</body>
+<script>
+function printOrdersAsText() {
+    let plainTextOrders = 'Fetched Orders:\n';
+    fetchedOrders.forEach(orderArray => {
+        orderArray.forEach(order => {
+            if(order.name && order.quantity && typeof order.totalPrice !== 'undefined') {
+                plainTextOrders += `${order.name} x ${order.quantity} = $${order.totalPrice.toFixed(2)}\n`;
+            }
+        });
+    });
+    alert(plainTextOrders);
+}
+</script></body>
 </html>
