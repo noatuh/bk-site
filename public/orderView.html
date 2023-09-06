@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #orders {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recent Orders</h1>
+    <button onclick="fetchOrders()">Fetch Orders</button>
+    <div id="orders"></div>
+
+    <script>
+        let fetchedOrders = [];  // This will store the fetched orders
+
+function fetchOrders() {
+    fetch('/get-orders')
+    .then(response => response.json())
+    .then(data => {
+        fetchedOrders = data;  // Store the fetched orders in the global variable
+
+        const ordersDiv = document.getElementById('orders');
+        ordersDiv.innerHTML = ''; // Clear previous orders
+
+        data.forEach(order => {
+            if(order.name && order.quantity && typeof order.totalPrice !== 'undefined') {
+                const orderElement = document.createElement('p');
+                orderElement.textContent = `${order.name} x ${order.quantity} = $${order.totalPrice.toFixed(2)}`;
+                ordersDiv.appendChild(orderElement);
+            } else {
+                console.warn('Incomplete order data:', order);
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching orders:', error);
+    });
+}
+
+// Fetch orders when the page loads
+window.onload = fetchOrders;
+
+// If you have a "Refresh Order" button with the ID 'refreshButton':
+document.getElementById('refreshButton').addEventListener('click', fetchOrders);
+
+    </script>
+</body>
+</html>
