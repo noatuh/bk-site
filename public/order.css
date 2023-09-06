@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #d92550;
+    color: white;
+}
+
+h2 {
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #3a3b45;
+    border-bottom: 1px solid #d6d8db;
+}
+
+#burgers, #chicken, #sides-drinks, #other, #order {
+    margin: 10px;
+    padding: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #d6d8db;
+    border-radius: 5px;
+}
+
+.item-name, .item-price {
+    margin-right: 10px;
+}
+
+.item-quantity {
+    width: 50px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #d92550;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b21f3d;
+}
+.total-price {
+    text-align: center;
+}
+.submit-order {
+    padding: 10px 20px; /* Optional: Add some padding to make the button larger */
+    font-size: 16px;   /* Optional: Increase the font size for better visibility */
+    cursor: pointer;   /* Change the cursor to a hand when hovering over the button */
+}
+.submit-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
