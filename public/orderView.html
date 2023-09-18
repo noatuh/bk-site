@@ -17,7 +17,8 @@
 <body>
 <h1>Recent Orders</h1>
 <div class="button-container">
-<button onclick="fetchOrders()">Fetch Orders</button> <br> <br><button onclick="printOrdersAsText()">Print Orders as Text</button>
+<button onclick="fetchOrders()">Fetch Orders</button>
+    <button onclick="clearOrders()">Clear All Orders</button> <br> <br><button onclick="printOrdersAsText()">Print Orders as Text</button>
 </div >
 <div id="orders"></div>
 <script>
@@ -53,7 +54,22 @@ window.onload = fetchOrders;
 // If you have a "Refresh Order" button with the ID 'refreshButton':
 document.getElementById('refreshButton').addEventListener('click', fetchOrders);
 
-    </script>
+    
+function clearOrders() {
+    fetch('/clear-orders')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        // Clear the displayed orders
+        const ordersDiv = document.getElementById('orders');
+        ordersDiv.innerHTML = '';
+    })
+    .catch(error => {
+        console.error('Error clearing orders:', error);
+    });
+}
+
+</script>
 <script>
 function printOrdersAsText() {
     let plainTextOrders = 'Fetched Orders:\n';
@@ -66,5 +82,20 @@ function printOrdersAsText() {
     });
     alert(plainTextOrders);
 }
+
+function clearOrders() {
+    fetch('/clear-orders')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        // Clear the displayed orders
+        const ordersDiv = document.getElementById('orders');
+        ordersDiv.innerHTML = '';
+    })
+    .catch(error => {
+        console.error('Error clearing orders:', error);
+    });
+}
+
 </script></body>
 </html>

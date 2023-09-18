@@ -42,10 +42,19 @@ app.post('/submit-order', (req, res) => {
 
 // Endpoint to get all orders
 app.get('/get-orders', (req, res) => {
-    res.json(orders);
+    if (orders.length > 0) {
+        res.json([orders[orders.length - 1]]);
+    } else {
+        res.json([]);
+    }
 });
 
 // Start the server on port 8080
 app.listen(8080, () => {
     console.log("Server is running on port 8080");
+});
+
+app.get('/clear-orders', (req, res) => {
+    orders = [];
+    res.json({ message: 'All orders cleared' });
 });
