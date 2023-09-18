@@ -22,10 +22,19 @@
     <div id="other"></div>
 
     <h2>Your Order</h2>
-    <div id="order" style="text-align: center;"></div>
+    <div id="order" style="text-align: center;">
+        <button onclick="refreshPage()">Refresh Page</button></div>
     <div class="submit-button-container">
         <button id="submit-order">Submit Order</button>
     </div>
+    
+
+    <script>
+        function refreshPage() {
+    window.location.reload();
+}
+
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
